@@ -4,16 +4,41 @@
     <meta charset="UTF-8">
     <title>Html colors</title>
   </head>
-  <body style="background: rgb(112, 124, 194);">
+  <body style="background: white;">
     <h1>Html colors</h1> 
     <button id="btn">Change color</button>
-  </body>
+    <button id="stop-colors">Stop color</button>
   <script>
+    function randomBodyBgColor() {
+      const newColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+      document.body.style.background = newColor;
+    }
+    let intervalId;
     const changeBodyColorBtn = document.getElementById("btn");
     changeBodyColorBtn.addEventListener("click", (event) => {
       console.log("clicked");
-      const newColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-      document.body.style.background = newColor;
+      randomBodyBgColor();
+    });
+
+    const stopColorsBtn = document.getElementById("stop-colors");
+    stopColorsBtn.addEventListener("click", (event) => {
+      document.body.style.background = "white";
+      // clears the interval by intervalId;
+      clearInterval(intervalId);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("DOMContentLoaded");
+
+      const setTimeoutCallback = () => {
+                    // executes bellow callback on 500 ms interval
+        intervalId = setInterval(() => randomBodyBgColor(), 500);
+        console.log(intervalId);
+      }
+
+      // executes setTimeoutCallback after 2000 ms
+      setTimeout(setTimeoutCallback, 2000);
     });
   </script>
+  </body>
 </html>
