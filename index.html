@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Html colors</title>
+  </head>
+  <body style="background: rgb(112, 124, 194);">
+    <h1>Html colors</h1> 
+    <button id="btn">Change color</button>
+  </body>
+  <script>
+    const changeBodyColorBtn = document.getElementById("btn");
+    changeBodyColorBtn.addEventListener("click", (event) => {
+      console.log("clicked");
+      const newColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+      document.body.style.background = newColor;
+    });
+  </script>
+</html>
